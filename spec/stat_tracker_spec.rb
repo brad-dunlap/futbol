@@ -27,6 +27,20 @@ RSpec.describe StatTracker do
       expect(stat_tracker.teams).to be_a(CSV::Table)
     end
 
+    describe 'compares total scores' do
+      it 'finds total score' do
+        expect(stat_tracker.total_score).to be_a(Array)
+      end
+      
+      it 'finds highest total score' do
+        expect(stat_tracker.highest_total_score).to eq(11)
+      end
+  
+      it 'finds lowest total score' do
+        expect(stat_tracker.lowest_total_score).to eq(0)
+      end
+    end
+
     it 'can count # of teams' do 
       expect(stat_tracker.teams.count).to eq(32)
     end
@@ -53,20 +67,6 @@ RSpec.describe StatTracker do
 			expect(stat_tracker.percentage_ties).to eq 0.20
 		end
 	end
-
-  describe 'compares total scores' do
-    it 'finds total score' do
-      expect(stat_tracker.total_score).to be_a(Array)
-    end
-    
-    it 'finds highest total score' do
-      expect(stat_tracker.highest_total_score).to eq(11)
-    end
-
-    it 'finds lowest total score' do
-      expect(stat_tracker.lowest_total_score).to eq(0)
-    end
-  end
 
   describe '#count_of_games_by_season' do
     it 'is a hash' do

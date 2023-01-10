@@ -13,10 +13,34 @@ class StatTracker
 	def self.from_csv(locations)
     StatTracker.new(locations)
   end
+  
+  def all_games
+    all_games = []
+    @games.each do |row|
+      all_games << Game.new(row)
+    end
+    all_games
+  end
+
+  def all_teams
+    all_teams = []
+    @teams.each do |row|
+      all_teams << Team.new(row)
+    end
+    all_teams
+  end
+
+  def all_game_teams
+    all_game_teams = []
+    @game_teams.each do |row|
+      all_game_teams << Game_team.new(row)
+    end
+    all_game_teams
+  end
 
   def total_score
-    total_score = games.map do |game|
-      game[:home_goals].to_i + game[:away_goals].to_i
+    sum = all_games.map do |game|
+      game.home_goals.to_i + game.away_goals.to_i
     end
   end
 
