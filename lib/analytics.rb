@@ -49,6 +49,17 @@ module Analytics
     teams_total_home_averages
   end
 
+	def individual_goals_per_game(game_collection, team_id)
+	  individual_goals = []
+	  games_played = game_team_collection.find_all {|row| row.team_id == team_id }
+
+		games_played.each do |game|
+			individual_goals<< game.goals.to_i
+		end
+    
+	  individual_goals
+  end
+
   def find_coach(season, game_team_collection, game_collection)    
 		outcomes_by_game_id = []
     results_by_coach = Hash.new { | k, v | k[v] = [] }
