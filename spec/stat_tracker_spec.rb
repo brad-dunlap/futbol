@@ -30,13 +30,6 @@ RSpec.describe StatTracker do
     end
   end 
 
-  # describe 'Game Statistics' do
-    
-    #mv: game_collection_spec? -- YES When it's made.
-    # it 'finds total score' do
-    #   expect(stat_tracker.game_collection.total_score).to be_a(Array)
-    # end
-
     describe '#highest_total_score' do
       it 'finds highest total score' do
         expect(stat_tracker.highest_total_score).to eq(11)
@@ -174,6 +167,10 @@ RSpec.describe StatTracker do
     # end
 
     context "#winningest_coach" do
+      it 'can make a coach hash' do
+        expect(stat_tracker.find_coach("20132014", stat_tracker.game_team_collection, stat_tracker.game_collection)).to be_a(Hash)
+      end
+
       it 'can find the coach with the best win percentage for the season ' do
         expect(stat_tracker.winningest_coach("20132014")).to eq "Claude Julien"
         expect(stat_tracker.winningest_coach("20142015")).to eq "Alain Vigneault"
@@ -181,6 +178,10 @@ RSpec.describe StatTracker do
     end
 
     context "#worst_coach" do
+    it 'can make a coach hash' do
+      expect(stat_tracker.find_coach("20132014", stat_tracker.game_team_collection, stat_tracker.game_collection)).to be_a(Hash)
+    end
+
       it "#worst_coach" do
         expect(stat_tracker.worst_coach("20132014")).to eq("Peter Laviolette")
         expect(stat_tracker.worst_coach("20142015")).to eq("Craig MacTavish").or(eq("Ted Nolan"))
