@@ -75,9 +75,11 @@ The two that stuck out to us was using CSV.foreach in order to access the CSV in
 We utilized modules to hold the majority of our methods that are shared between our StatTracker Class and our Team, Game, and GameTeam Classes. This maintains the integrity of the code and hides the methods from the user and also allows that code to be shared across multiple classes. We also made a module called Analytics that holds calculations for finding averages that are then used throughout our methods. 
 
 ### Tell us about 1) a unit test and 2) an integration test that you are particularly proud of.
-
+No.
 
 ### Q&A
 #### Please address the following questions from our team:
 How would you have used a superclass for this project (as opposed to modules like we did)? (BD)
 What steps should we take to be more memory efficient/ what default methods/data structures use less memory?(IA)
+Even though this is group design based was there a way of refactoring that is more efficient and easier/better? (BL)
+How would you integrate memoization properly with our particular structure? (AKH)
