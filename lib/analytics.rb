@@ -61,4 +61,14 @@ module Analytics
 
     teams_total_home_averages
   end
+
+	def individual_goals_per_game(game_collection)
+	individual_goals = []
+	games_played = @game_team_collection.find_all {|row| row.team_id == team_id }
+
+		games_played.each do |game|
+			individual_goals<< game.goals.to_i
+		end
+	individual_goals
+	end
 end

@@ -382,27 +382,11 @@ include GameTeamCollection
 	end
 
 	def most_goals_scored(team_id)
-		individual_goals_per_game = []
-
-		games_played = @game_team_collection.find_all {|row| row.team_id == team_id }
-
-		games_played.each do |game|
-			individual_goals_per_game << game.goals.to_i
-		end
-
-		individual_goals_per_game.max
+				individual_goals_per_game.max
 	end
 
 	def fewest_goals_scored(team_id)
-		individual_goals_per_game = []
-
-		games_played = @game_team_collection.find_all {|row| row.team_id == team_id }
-
-		games_played.each do |game|
-			individual_goals_per_game << game.goals.to_i
-		end
-
-		individual_goals_per_game.min
+				individual_goals_per_game.min 
 	end
 
   def favorite_opponent(team_id)
