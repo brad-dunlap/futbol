@@ -17,8 +17,6 @@ RSpec.describe StatTracker do
   }
     
   describe '#initialize' do
-
-    #"it 'can instantiate an instance of itself'"?
 	  it 'exists' do
       expect(stat_tracker).to be_a StatTracker
 	  end
@@ -30,40 +28,37 @@ RSpec.describe StatTracker do
     end
   end 
 
-  # describe 'Game Statistics' do
-    
-    #mv: game_collection_spec? -- YES When it's made.
-    # it 'finds total score' do
-    #   expect(stat_tracker.game_collection.total_score).to be_a(Array)
-    # end
-
-    describe '#highest_total_score' do
+  describe 'Game Statistics' do
+    context '#highest_total_score' do
       it 'finds highest total score' do
         expect(stat_tracker.highest_total_score).to eq(11)
       end
     end
 
-    describe "#lowest_total_score" do
+    context "#lowest_total_score" do
       it 'finds lowest total score' do
         expect(stat_tracker.lowest_total_score).to eq(0)
       end
     end
 
-    describe 'checks percentage of wins/ties' do
-      it "#percentage_home_wins" do
+    context '#percentage_home_wins' do
+      it "checks percentage of wins/ties" do
         expect(stat_tracker.percentage_home_wins).to eq 0.44
       end
-  
-      it "#percentage_visitor_wins" do
+    end
+
+    context '#percentage_visitor_wins' do
+      it "finds percentage of games that a visitor has won (rounded to the nearest 100th)" do
         expect(stat_tracker.percentage_visitor_wins).to eq 0.36
       end
   
-      it "#percentage_ties" do
+    context "#percentage_ties" do
+      it "find percentage of games that has resulted in a tie (rounded to the nearest 100th)" do
         expect(stat_tracker.percentage_ties).to eq 0.20
       end
     end
     
-    describe '#count_of_games_by_season' do
+    context '#count_of_games_by_season' do
       it 'is a hash' do
         expect(stat_tracker.count_of_games_by_season).to be_a(Hash)
       end
@@ -85,7 +80,7 @@ RSpec.describe StatTracker do
       end
     end
 
-    describe '#average_goals_per_game' do
+    context '#average_goals_per_game' do
       it 'is a float' do
         expect(stat_tracker.average_goals_per_game).to be_a(Float)
       end
@@ -95,7 +90,7 @@ RSpec.describe StatTracker do
       end
     end
 
-    describe '#average_goals_by_season' do
+    context '#average_goals_by_season' do
       it 'is a Hash' do
         expect(stat_tracker.average_goals_by_season).to be_a(Hash)
       end
@@ -114,9 +109,10 @@ RSpec.describe StatTracker do
         expect(stat_tracker.average_goals_by_season).to eq(expected_hash)
       end
     end
-# end
+  end
 
-    describe '#count_of_teams' do
+  describe 'League Statistics' do
+    context '#count_of_teams' do
       it 'is a integer' do
         expect(stat_tracker.count_of_teams).to be_a(Integer)
       end
@@ -126,7 +122,7 @@ RSpec.describe StatTracker do
       end
     end
 
-    describe '#best_offense' do
+    context '#best_offense' do
       it 'is a string' do
         expect(stat_tracker.best_offense).to be_a(String)
       end
@@ -136,7 +132,7 @@ RSpec.describe StatTracker do
       end
     end
     
-    describe '#worst_offense' do
+    context '#worst_offense' do
       it 'is a string' do
         expect(stat_tracker.worst_offense).to be_a(String)
       end
@@ -147,97 +143,102 @@ RSpec.describe StatTracker do
       
     end
 
-	describe 'determines average scores and compares' do
-		
-		it "#highest_scoring_visitor" do
-      expect(stat_tracker.highest_scoring_visitor).to eq "FC Dallas"
+	  context '#highest_scoring_visitor' do
+      it "returns name of the team with the highest average score per away game across all seasons" do
+        expect(stat_tracker.highest_scoring_visitor).to eq "FC Dallas"
+      end
+    end
+    
+    context '#highest_scoring_home_team'
+      it "returns name of the team with the highest average score per home game across all seasons" do
+        expect(stat_tracker.highest_scoring_home_team).to eq "Reign FC"
+      end
+    end
+
+  	context "#lowest_scoring_visitor" do
+      it 'Name of the team with the lowest average score per game across all seasons when they are a visitor.' do
+    	  expect(stat_tracker.lowest_scoring_visitor).to eq "San Jose Earthquakes"
+      end
   	end
 
-  	it "#highest_scoring_home_team" do
-    	expect(stat_tracker.highest_scoring_home_team).to eq "Reign FC"
-  	end
-
-  	it "#lowest_scoring_visitor" do
-    	expect(stat_tracker.lowest_scoring_visitor).to eq "San Jose Earthquakes"
-  	end
-
-  	it "#lowest_scoring_home_team" do
-    	expect(stat_tracker.lowest_scoring_home_team).to eq "Utah Royals FC"
-  	end
+    context "#lowest_scoring_home_team" do
+      it 'Name of the team with the lowest average score per game across all seasons when they are at home.'
+        expect(stat_tracker.lowest_scoring_home_team).to eq "Utah Royals FC"
+      end
+    end
 	end
 
   describe "Season Statistics" do
-    # context '#game_ids_by_season' do
-    #   it 'returns the data matched to the passed argument as a Hash' do
-    #     expect(stat_tracker.game_ids_by_season).to be_a(Hash)
-    #   end
-    # end
-
     context "#winningest_coach" do
-      it 'can find the coach with the best win percentage for the season ' do
+      it 'returns a string of the coach with the best win percentage for the season' do
         expect(stat_tracker.winningest_coach("20132014")).to eq "Claude Julien"
         expect(stat_tracker.winningest_coach("20142015")).to eq "Alain Vigneault"
       end
     end
 
     context "#worst_coach" do
-      it "#worst_coach" do
+      it "returns a string of the coach with the worst win percentage for the season" do
         expect(stat_tracker.worst_coach("20132014")).to eq("Peter Laviolette")
         expect(stat_tracker.worst_coach("20142015")).to eq("Craig MacTavish").or(eq("Ted Nolan"))
       end
     end
-  end
 
-	describe 'team accuracy' do
-    it "#most_accurate_team" do
-      expect(stat_tracker.most_accurate_team("20132014")).to eq "Real Salt Lake"
-      expect(stat_tracker.most_accurate_team("20142015")).to eq "Toronto FC"
+    context '#most_accurate_team' do
+      it "returns a string of the Team with the best ratio of shots to goals for the season" do
+        expect(stat_tracker.most_accurate_team("20132014")).to eq "Real Salt Lake"
+        expect(stat_tracker.most_accurate_team("20142015")).to eq "Toronto FC"
+      end
     end
-  
-    it "#least_accurate_team" do
-      expect(stat_tracker.least_accurate_team("20132014")).to eq "New York City FC"
-      expect(stat_tracker.least_accurate_team("20142015")).to eq "Columbus Crew SC"
+    
+    context '#least_accurate_team' do
+      it "returns a string of the Team with the best ratio of shots to goals for the season" do
+        expect(stat_tracker.least_accurate_team("20132014")).to eq "New York City FC"
+        expect(stat_tracker.least_accurate_team("20142015")).to eq "Columbus Crew SC"
+      end
+    end
+
+    context '#most_tackles' do
+      it "returns a string of the Team with the most tackles in the season" do
+        expect(stat_tracker.most_tackles("20132014")).to eq "FC Cincinnati"
+        expect(stat_tracker.most_tackles("20142015")).to eq "Seattle Sounders FC"
+      end
+    end
+    context "#fewest_tackles" do
+      it "returns a string of the Team with the least tackles in the season" do
+        expect(stat_tracker.fewest_tackles("20132014")).to eq "Atlanta United"
+        expect(stat_tracker.fewest_tackles("20142015")).to eq "Orlando City SC"
+      end
     end
 	end
 
-  describe 'can determine number of tackles per season per team' do
-		it "#most_tackles" do
-			expect(stat_tracker.most_tackles("20132014")).to eq "FC Cincinnati"
-			expect(stat_tracker.most_tackles("20142015")).to eq "Seattle Sounders FC"
-		end
+  describe "Team Statistics" do
+    context '#team_info' do
+      it 'is a hash' do
+        expect(stat_tracker.team_info("id")).to be_a(Hash)
+      end
 
-		it "#fewest_tackles" do
-			expect(stat_tracker.fewest_tackles("20132014")).to eq "Atlanta United"
-			expect(stat_tracker.fewest_tackles("20142015")).to eq "Orlando City SC"
-		end
-	end
+      it 'returns a hash with key/value pairs of the teams attributes' do
 
-  describe '#team_info' do
-    it 'is a hash' do
-      expect(stat_tracker.team_info("id")).to be_a(Hash)
+      team = {
+        "team_id" => "18",
+        "franchise_id" => "34",
+        "team_name" => "Minnesota United FC",
+        "abbreviation" => "MIN",
+        "link" => "/api/v1/teams/18"
+      }
+
+      expect(stat_tracker.team_info("18")).to eq(team)
+      end
     end
 
-    it 'is a hash of info' do
+    describe 'returns season with the highest win percentage for a team.' do
+      it 'is a string' do
+        expect(stat_tracker.best_season("6")).to be_a(String)
+      end
 
-    team = {
-      "team_id" => "18",
-      "franchise_id" => "34",
-      "team_name" => "Minnesota United FC",
-      "abbreviation" => "MIN",
-      "link" => "/api/v1/teams/18"
-    }
-
-    expect(stat_tracker.team_info("18")).to eq(team)
-    end
-  end
-
-  describe 'returns season with the highest win percentage for a team.' do
-    it 'is a string' do
-      expect(stat_tracker.best_season("6")).to be_a(String)
-    end
-
-    it "#best_season" do
-      expect(stat_tracker.best_season("6")).to eq "20132014"
+      it "#best_season" do
+        expect(stat_tracker.best_season("6")).to eq "20132014"
+      end
     end
   end
 

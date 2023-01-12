@@ -32,12 +32,4 @@ class GameTeam
 		@giveaways = info[:giveaways]
 		@takeaways = info[:takeaways]
 	end
-
-	def self.all_game_teams(location)
-		game_teams = []
-		CSV.foreach location, headers: true, header_converters: :symbol do |row|
-			game_teams << GameTeam.new(row)
-		end
-		game_teams
-	end
 end

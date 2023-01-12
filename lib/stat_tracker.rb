@@ -19,7 +19,7 @@ include GameTeamCollection
     CSV.foreach(locations[:games], headers: true, header_converters: :symbol) do |row|
 	    @game_collection << Game.new(row)
 	  end
-
+    require 'pry'; binding.pry
     CSV.foreach(locations[:teams], headers: true, header_converters: :symbol) do |row|
 	    @team_collection << Team.new(row)
 	  end
