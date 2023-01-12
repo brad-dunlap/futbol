@@ -382,11 +382,11 @@ include GameTeamCollection
 	end
 
 	def most_goals_scored(team_id)
-				individual_goals_per_game.max
+				individual_goals_per_game(@game_collection, team_id).max
 	end
 
 	def fewest_goals_scored(team_id)
-				individual_goals_per_game.min 
+		individual_goals_per_game(@game_collection, team_id).min
 	end
 
   def favorite_opponent(team_id)
