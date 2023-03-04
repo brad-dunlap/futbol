@@ -326,6 +326,7 @@ class StatTracker
     team_tackles(season_year).min_by { |team, tackles| tackles }.first
   end
 
-
+  
+  
   
 end
