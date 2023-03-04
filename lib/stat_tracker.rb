@@ -52,18 +52,6 @@ class StatTracker
     percentage_game_result(:home_team, "TIE").round(2)
   end
 
-  def count_of_games_by_season
-
-  end
-
-  def avg_goals_per_game
-
-  end
-
-  def avg_goals_by_season
-
-  end
-
   def count_of_teams
     @league.teams.count
   end
@@ -137,14 +125,6 @@ class StatTracker
       [team, avg_goals]
     end.to_h
     lowest_home_avg_goals.min_by { |team, avg_goals| avg_goals }.first
-  end
-
-  def best_season
-
-  end
-
-  def worst_season
-
   end
 
   def team_tackles(season_year)

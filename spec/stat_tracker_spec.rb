@@ -212,7 +212,6 @@ RSpec.describe StatTracker do
     end
   end
 
-most_accurate_team_bl
   describe '#team_shots_and_goals' do
     it 'returns an array of the max and min of ratios of shots for goals per season ' do
       expect(stat_tracker.team_shots_and_goals("20132014")).to be_a(Array)
@@ -230,6 +229,8 @@ most_accurate_team_bl
     it 'returns the name of the team with the worst ratio of shots to goals for the season' do
       expect(stat_tracker.least_accurate_team("20132014")).to eq "Minnesota United FC"
       expect(stat_tracker.least_accurate_team("20142015")).to eq "Real Salt Lake"
+    end
+  end
 
   describe '#highest_scoring_visitor' do
   it "team with the highest average score per game across all seasons when they are away" do
