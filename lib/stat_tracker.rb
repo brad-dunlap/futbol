@@ -154,8 +154,11 @@ class StatTracker
       team_and_tackles[game.team_refs[:home_team].name] += game.team_stats[:home_team][:tackles]
       team_and_tackles[game.team_refs[:away_team].name] += game.team_stats[:away_team][:tackles]
     end
-
     team_and_tackles
+  end
+
+  def team_shots_and_goals(season_year)
+    
   end
 
   def team_goals

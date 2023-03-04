@@ -211,4 +211,10 @@ RSpec.describe StatTracker do
       expect(stat_tracker.worst_offense).to eq("DC United")
     end
   end
+
+  describe '#team_shots_and_goals' do
+    it 'returns a hash of teams as keys and values of shots they took that season' do
+      expect(stat_tracker.team_shots_and_goals("20132014")).to be_a(Array)
+    end
+  end
 end
