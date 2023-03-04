@@ -260,6 +260,20 @@ class StatTracker
     end
     coach_games
   end
+
+  def count_of_teams
+    @league.teams.count
+  end
+
+  def best_offense
+    team_and_goals_per_game = avg_goals
+    team_and_goals_per_game.max_by { |team, goals_per_game| goals_per_game }.first
+  end
+
+  def worst_offense
+    team_and_goals_per_game = avg_goals
+    team_and_goals_per_game.min_by { |team, goals_per_game| goals_per_game }.first
+  end
   
   def winningest_coach(season_year)
     coach_game_count = games_coached(season_year)
@@ -311,5 +325,31 @@ class StatTracker
 
   def fewest_tackles(season_year)
     team_tackles(season_year).min_by { |team, tackles| tackles }.first
+  end
+
+  def average_goals_per_game
+    (total_goals_per_game.sum.to_f / @league.games.size).round(2)
+  end
+  
+  def count_of_games_by_season
+    games_by_season = Hash.new(0)
+    @league.games.each do |game|
+      games_by_season[game.info[:season]] += 1
+    end
+    games_by_season
+  end
+
+  def average_goals_by_season
+    goals_by_season = Hash.new(0)
+    @league.games.each do |game|
+      total_goals = (game.info[:away_goals].to_i + game.info[:home_goals].to_i)
+      goals_by_season[game.info[:season]] += total_goals
+    end
+    
+    count_of_games_by_season.each do |season, game_count|
+      goal_count = goals_by_season[season]
+      goals_by_season[season] = (goal_count/game_count.to_f).round(2)
+    end
+    goals_by_season
   end
 end

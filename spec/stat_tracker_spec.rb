@@ -211,4 +211,64 @@ RSpec.describe StatTracker do
       expect(stat_tracker.worst_offense).to eq("DC United")
     end
   end
+
+  describe '#highest_scoring_visitor' do
+  it "team with the highest average score per game across all seasons when they are away" do
+    expect(stat_tracker.highest_scoring_visitor).to eq "Sporting Kansas City"
+  end
+end
+
+describe '#lowest_scoring_visitor' do
+  it "team with the lowest average score per game across all seasons when they are away" do
+    expect(stat_tracker.lowest_scoring_visitor).to eq "Chicago Fire"
+  end
+end
+
+describe '#lowest_scoring_home_team' do
+  it "team with the lowest average score per game across all seasons when they are away" do
+    expect(stat_tracker.lowest_scoring_home_team).to eq "DC United"
+  end
+end
+
+describe '#highest_scoring_home_team' do
+  it "team with the highest average score per game across all seasons when they are away" do
+    expect(stat_tracker.highest_scoring_home_team).to eq "Sporting Kansas City"
+  end
+end
+
+  describe '#average_goals_per_game' do
+    it 'returns the average number of goals per game' do
+      expect(stat_tracker.average_goals_per_game).to eq(4.24)
+    end
+  end
+
+  describe '#count_of_games_by_season' do
+    it 'returns a hash of the number of games(values) per season(keys)' do
+      expected_hash = {
+        "20122013" => 21,
+        "20132014" => 13,
+        "20142015" => 1,
+        "20152016" => 1,
+        "20162017" => 1,
+        "20172018" => 1
+      }
+      
+      expect(stat_tracker.count_of_games_by_season).to eq(expected_hash)
+    end
+  end
+
+  describe '#average_goals_by_season' do
+    it 'returns a hash of the average goals(values) by season(keys)' do
+      expected_hash = {
+        "20122013" => 4.43,
+        "20132014" => 4.08,
+        "20142015" => 4.00,
+        "20152016" => 5.00,
+        "20162017" => 3.00,
+        "20172018" => 3.00
+      }
+      
+      expect(stat_tracker.average_goals_by_season).to eq(expected_hash)
+    end
+  end
 end
