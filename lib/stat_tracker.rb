@@ -322,7 +322,7 @@ class StatTracker
   end
 
   def least_accurate_team(season_year)
-
+    team_shots_and_goals(season_year).last
   end
 
   def most_tackles(season_year)

@@ -227,8 +227,8 @@ RSpec.describe StatTracker do
  
   describe '#least_accurate_team' do
     it 'returns the name of the team with the worst ratio of shots to goals for the season' do
-      expect(stat_tracker.least_accurate_team("20132014")).to eq "Minnesota United FC"
-      expect(stat_tracker.least_accurate_team("20142015")).to eq "Real Salt Lake"
+      expect(stat_tracker.least_accurate_team("20132014")).to eq "Sporting Kansas City"
+      expect(stat_tracker.least_accurate_team("20142015")).to eq "Atlanta United"
     end
   end
 end
