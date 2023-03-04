@@ -192,4 +192,11 @@ RSpec.describe StatTracker do
       expect(stat_tracker.worst_offense).to eq("DC United")
     end
   end
+
+
+  describe '#average_goals_per_game' do
+    it 'returns the average number of goals per game' do
+      expect(stat_tracker.average_goals_per_game).to eq(4.24)
+    end
+  end
 end

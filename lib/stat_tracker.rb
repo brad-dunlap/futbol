@@ -325,4 +325,7 @@ class StatTracker
   def fewest_tackles(season_year)
     team_tackles(season_year).min_by { |team, tackles| tackles }.first
   end
+
+
+  
 end
