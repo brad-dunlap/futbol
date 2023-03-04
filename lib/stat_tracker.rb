@@ -326,7 +326,10 @@ class StatTracker
     team_tackles(season_year).min_by { |team, tackles| tackles }.first
   end
 
-  
+  def average_goals_per_game
+    (total_goals_per_game.sum.to_f / @league.games.size).round(2)
+    # require'pry';binding.pry
+  end
   
   
 end
