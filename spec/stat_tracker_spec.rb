@@ -217,4 +217,11 @@ RSpec.describe StatTracker do
       expect(stat_tracker.team_shots_and_goals("20132014")).to be_a(Array)
     end
   end
+
+  describe '#most_accurate_team' do
+    it 'returns the name of the team with the best ratio of shots to goals for the season' do
+      expect(stat_tracker.most_accurate_team("20132014")).to eq "Minnesota United FC"
+      expect(stat_tracker.most_accurate_team("20142015")).to eq "Real Salt Lake"
+    end
+  end
 end

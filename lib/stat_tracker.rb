@@ -317,8 +317,8 @@ class StatTracker
     worst_coach
   end
 
-  def most_accurate_team
-
+  def most_accurate_team(season_year)
+    team_shots_and_goals(season_year).first
   end
 
   def least_accurate_team
