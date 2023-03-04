@@ -213,7 +213,7 @@ RSpec.describe StatTracker do
   end
 
   describe '#team_shots_and_goals' do
-    it 'returns a hash of teams as keys and values of shots they took that season' do
+    it 'returns an array of the max and min of ratios of shots for goals per season ' do
       expect(stat_tracker.team_shots_and_goals("20132014")).to be_a(Array)
     end
   end
