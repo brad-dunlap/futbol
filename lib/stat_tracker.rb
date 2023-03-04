@@ -173,7 +173,7 @@ class StatTracker
     ratios = {}
     team_and_shots.each do |team, shots|
       goals = team_and_goals[team]
-      ratios[team] = shots.to_f / goals
+      ratios[team] = goals / shots.to_f
     end
     [ratios.key(ratios.values.max), ratios.key(ratios.values.min)]
   end
