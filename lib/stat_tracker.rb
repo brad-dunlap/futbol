@@ -328,7 +328,6 @@ class StatTracker
 
   def average_goals_per_game
     (total_goals_per_game.sum.to_f / @league.games.size).round(2)
-    # require'pry';binding.pry
   end
   
   def count_of_games_by_season
@@ -352,5 +351,4 @@ class StatTracker
     end
     goals_by_season
   end
-  
 end

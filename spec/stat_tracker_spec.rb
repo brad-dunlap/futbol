@@ -198,7 +198,7 @@ RSpec.describe StatTracker do
       expect(stat_tracker.average_goals_per_game).to eq(4.24)
     end
   end
-  # require'pry';binding.pry
+
   describe '#count_of_games_by_season' do
     it 'returns a hash of the number of games(values) per season(keys)' do
       expected_hash = {
@@ -209,6 +209,7 @@ RSpec.describe StatTracker do
         "20162017" => 1,
         "20172018" => 1
       }
+      
       expect(stat_tracker.count_of_games_by_season).to eq(expected_hash)
     end
   end
