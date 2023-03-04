@@ -154,8 +154,28 @@ class StatTracker
       team_and_tackles[game.team_refs[:home_team].name] += game.team_stats[:home_team][:tackles]
       team_and_tackles[game.team_refs[:away_team].name] += game.team_stats[:away_team][:tackles]
     end
-
     team_and_tackles
+  end
+
+  def team_shots_and_goals(season_year)
+    team_and_shots = Hash.new(0)
+    team_and_goals = Hash.new(0)
+
+    season = @league.seasons.find{ |season| season.year == season_year }
+    season.games.each do |game|
+      team_and_shots[game.team_refs[:home_team].name] += game.team_stats[:home_team][:shots]
+      team_and_shots[game.team_refs[:away_team].name] += game.team_stats[:away_team][:shots]
+
+      team_and_goals[game.team_refs[:home_team].name] += game.team_stats[:home_team][:goals]
+      team_and_goals[game.team_refs[:away_team].name] += game.team_stats[:away_team][:goals]
+    end
+
+    ratios = {}
+    team_and_shots.each do |team, shots|
+      goals = team_and_goals[team]
+      ratios[team] = goals / shots.to_f
+    end
+    [ratios.key(ratios.values.max), ratios.key(ratios.values.min)]
   end
 
   def team_goals
@@ -311,12 +331,12 @@ class StatTracker
     worst_coach
   end
 
-  def most_accurate_team
-
+  def most_accurate_team(season_year)
+    team_shots_and_goals(season_year).first
   end
 
-  def least_accurate_team
-
+  def least_accurate_team(season_year)
+    team_shots_and_goals(season_year).last
   end
 
   def most_tackles(season_year)
