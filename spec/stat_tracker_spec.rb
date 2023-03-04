@@ -77,27 +77,88 @@ RSpec.describe StatTracker do
     end
   end
 
-  describe '#highest_scoring_visitor' do
-    it "team with the highest average score per game across all seasons when they are away" do
-      expect(stat_tracker.highest_scoring_visitor).to eq "Sporting Kansas City"
+  describe '#wins_losses_by_coach' do
+    it 'can return an array with all coaches total wins and losses' do
+      expect(stat_tracker.wins_losses_by_coach("20132014")).to eq([{"John Tortorella"=>1, "Bruce Boudreau"=>1, "Adam Oates"=>1, "Claude Julien"=>1, "Dan Bylsma"=>1, "Todd McLellan"=>2, "Todd Richards"=>1, "Mike Babcock"=>1, "Peter Horachek"=>1, "Bob Hartley"=>1},
+        {"Ken Hitchcock"=>1,
+         "Craig Berube"=>1,
+         "Todd Richards"=>1,
+         "Mike Babcock"=>2,
+         "Bruce Boudreau"=>1,
+         "Barry Trotz"=>2,
+         "Bob Hartley"=>2,
+         "Jack Capuano"=>1,
+         "Dallas Eakins"=>1,
+         "Randy Carlyle"=>2,
+         "Peter DeBoer"=>1}])
+
+      expect(stat_tracker.wins_losses_by_coach("20122013")).to eq([{"Claude Julien"=>7, "Bruce Boudreau"=>1, "Peter DeBoer"=>2, "Dave Tippett"=>1, "Mike Babcock"=>1, "Randy Carlyle"=>1, "Lindy Ruff"=>1, "Dan Bylsma"=>1, "Alain Vigneault"=>1},
+        {"John Tortorella"=>6,
+         "Todd Richards"=>1,
+         "Kirk Muller"=>1,
+         "Jack Capuano"=>2,
+         "Darryl Sutter"=>2,
+         "Mike Yeo"=>1,
+         "Ron Rolston"=>1,
+         "Adam Oates"=>1,
+         "Bob Hartley"=>1,
+         "Joel Quenneville"=>2,
+         "Kevin Dineen"=>2,
+         "Barry Trotz"=>1,
+         "Paul MacLean"=>1,
+         "Peter Laviolette"=>1,
+         "Claude Noel"=>1,
+         "Jon Cooper"=>1,
+         "Randy Carlyle"=>1}])
+      
     end
   end
 
-  describe '#lowest_scoring_visitor' do
-    it "team with the lowest average score per game across all seasons when they are away" do
-      expect(stat_tracker.lowest_scoring_visitor).to eq "Chicago Fire"
-    end
-  end
+  describe '#games_coach' do
+    it 'can return an arrary of hashes indicating how many total games each coach has coached in the indicated season' do
+      expect(stat_tracker.games_coached("20132014")).to eq({"John Tortorella"=>1,
+        "Ken Hitchcock"=>1,
+        "Craig Berube"=>1,
+        "Bruce Boudreau"=>2,
+        "Todd Richards"=>2,
+        "Mike Babcock"=>3,
+        "Adam Oates"=>1,
+        "Barry Trotz"=>2,
+        "Bob Hartley"=>3,
+        "Claude Julien"=>1,
+        "Jack Capuano"=>1,
+        "Dan Bylsma"=>1,
+        "Dallas Eakins"=>1,
+        "Todd McLellan"=>2,
+        "Randy Carlyle"=>2,
+        "Peter Horachek"=>1,
+        "Peter DeBoer"=>1})
 
-  describe '#lowest_scoring_home_team' do
-    it "team with the lowest average score per game across all seasons when they are away" do
-      expect(stat_tracker.lowest_scoring_home_team).to eq "DC United"
-    end
-  end
-
-  describe '#highest_scoring_home_team' do
-    it "team with the highest average score per game across all seasons when they are away" do
-      expect(stat_tracker.highest_scoring_home_team).to eq "Sporting Kansas City"
+      expect(stat_tracker.games_coached("20122013")).to eq({"Claude Julien"=>7,
+        "John Tortorella"=>6,
+        "Bruce Boudreau"=>1,
+        "Todd Richards"=>1,
+        "Kirk Muller"=>1,
+        "Jack Capuano"=>2,
+        "Peter DeBoer"=>2,
+        "Dave Tippett"=>1,
+        "Darryl Sutter"=>2,
+        "Mike Yeo"=>1,
+        "Ron Rolston"=>1,
+        "Adam Oates"=>1,
+        "Bob Hartley"=>1,
+        "Joel Quenneville"=>2,
+        "Kevin Dineen"=>2,
+        "Barry Trotz"=>1,
+        "Mike Babcock"=>1,
+        "Paul MacLean"=>1,
+        "Randy Carlyle"=>2,
+        "Lindy Ruff"=>1,
+        "Peter Laviolette"=>1,
+        "Claude Noel"=>1,
+        "Jon Cooper"=>1,
+        "Dan Bylsma"=>1,
+        "Alain Vigneault"=>1})
     end
   end
 
@@ -150,12 +211,12 @@ RSpec.describe StatTracker do
     end
   end
 
-  # describe '#worst_coach' do
-  #   it 'can find the worst coach base on season' do
-  #     expect(stat_tracker.worst_coach("20132014")).to eq("Craig Berube")
-  #     expect(stat_tracker.worst_coach("20122013")).to eq("Jack Capuano")
-  #   end
-  # end
+  describe '#worst_coach' do
+    it 'can find the worst coach base on season' do
+      expect(stat_tracker.worst_coach("20132014")).to eq("Ken Hitchcock")
+      expect(stat_tracker.worst_coach("20122013")).to eq("John Tortorella")
+    end
+  end
 
   describe '#count_of_teams' do
     it 'returns the number of teams' do
