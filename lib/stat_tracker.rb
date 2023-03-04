@@ -273,10 +273,6 @@ class StatTracker
     team_and_goals_per_game = avg_goals
     team_and_goals_per_game.min_by { |team, goals_per_game| goals_per_game }.first
   end
-
-  def highest_scoring_visitor
-
-  end
   
   def winningest_coach(season_year)
     coach_game_count = games_coached(season_year)
